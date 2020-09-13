@@ -184,6 +184,13 @@ extension SearchMovieVC: UITableViewDataSource, UITableViewDelegate {
         return movies.count
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let movie = movies[indexPath.item]
+        let controller = MovieDetailsVC(nibName: nil, bundle: nil)
+        controller.movie = movie
+        controller.tmdb = tmdb
+        navigationController?.pushViewController(controller, animated: true)
+    }
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         viewModel.scrollViewDidEndDragging(tableView: tableView, scrollView, willDecelerate: decelerate)
     }
